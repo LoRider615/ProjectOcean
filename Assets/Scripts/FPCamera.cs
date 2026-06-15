@@ -15,6 +15,8 @@ public class FPCamera : MonoBehaviour
     private Vector2 lookInput;
     private float pitch;
 
+    public PlayerController playerController;
+
     public void OnLook(InputAction.CallbackContext context)
     {
         lookInput = context.ReadValue<Vector2>();

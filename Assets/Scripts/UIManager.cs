@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance = new();
+    public static UIManager instance { get; set; }
 
     [SerializeField]
     private GameObject interactText;
@@ -11,19 +11,18 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(this);
-        }
+        instance = this;
         interactText.SetActive(false);
     }
 
     public void ShowInteractText()
     {
+        Debug.Log("Show text fired");
         interactText.SetActive(true);
     }
 
