@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal.Commands;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,12 +28,20 @@ public class FPCamera : MonoBehaviour
         float mouseX = lookInput.x * sensitivity;
         float mouseY = lookInput.y * sensitivity;
 
-        playerBody.Rotate(Vector3.up * mouseX);
+        if (!playerController.drivingBoat)
+        {
+            playerBody.Rotate(Vector3.up * mouseX);
 
-        pitch -= mouseY;
-        pitch = Mathf.Clamp(pitch, bottomClamp, topClamp);
+            pitch -= mouseY;
+            pitch = Mathf.Clamp(pitch, bottomClamp, topClamp);
 
-        transform.localRotation = Quaternion.Euler(pitch, 0, 0);
+            transform.localRotation = Quaternion.Euler(pitch, 0, 0);
+        }
+        else
+        {
+
+        }
+        
     }
 
     private void Awake()

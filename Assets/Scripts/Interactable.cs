@@ -15,7 +15,7 @@ public class Interactable : MonoBehaviour
             controller.nearSteeringWheel = true;
             if (anchorPoint != null)
             {
-                controller.anchorToPos = anchorPoint.position;
+                controller.playerSteeringAnchorPost.position = anchorPoint.position;
             }
         }
     }

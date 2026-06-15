@@ -9,8 +9,9 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    public bool drivingBoat = false;
-    
+    public bool drivingBoat = false; public bool nearSteeringWheel = false;
+    public Transform playerSteeringAnchorPost;
+
 
     [SerializeField]
     private int walkSpeed = 5, jumpForce = 5, sprintSpeed = 8;
@@ -19,17 +20,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform TPCampos, FPCampos;
 
-    
-    public Vector3 anchorToPos;
+    [Header("Boat Params")]
+    [SerializeField]
+    private float acceleration, maxBoatSpeed, turnSpeed, drag;
+    private float boatSpeed;
 
     private int moveSpeed;
 
     private Vector2 moveInput;
+
     private Rigidbody rb;
 
     private bool canJump = true;
-
-    public bool nearSteeringWheel = false;
 
 
     private void Awake()
@@ -48,6 +50,17 @@ public class PlayerController : MonoBehaviour
 
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
+        else
+        {
+            boatSpeed += moveInput.y * acceleration * Time.fixedDeltaTime;
+            boatSpeed = Mathf.Clamp(boatSpeed, -maxBoatSpeed, maxBoatSpeed);
+            boatSpeed = Mathf.MoveTowards(boatSpeed, 0, drag * Time.fixedDeltaTime);
+
+            rb.MovePosition(rb.position + transform.forward * boatSpeed * Time.fixedDeltaTime);
+            float turnMultiplier = Mathf.Abs(boatSpeed) / maxBoatSpeed;
+            rb.MoveRotation(rb.rotation * Quaternion.Euler(0, moveInput.x * turnSpeed * turnMultiplier * Time.fixedDeltaTime, 0));
+        }
+
         
     }
 
@@ -108,15 +121,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Interact()
+    public void Interact()
     {
         if (nearSteeringWheel && !drivingBoat)
         {
             drivingBoat = true;
-            transform.position = anchorToPos;
+            transform.position = playerSteeringAnchorPost.position;
             boat.transform.SetParent(transform);
             playerCam.transform.position = TPCampos.position;
             playerCam.transform.rotation = TPCampos.rotation;
+            rb.useGravity = false;
+        }
+        else if (nearSteeringWheel && drivingBoat)
+        {
+            drivingBoat = false;
+            boat.transform.SetParent(null);
+            playerCam.transform.position = FPCampos.position;
+            playerCam.transform.rotation = FPCampos.rotation;
+            rb.useGravity = true;
         }
     }
 
