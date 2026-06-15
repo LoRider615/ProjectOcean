@@ -9,14 +9,11 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-
     public bool drivingBoat = false;
-    public bool nearSteeringWheel = false;
+    
 
     [SerializeField]
     private int moveSpeed = 5, jumpForce = 5;
-    [SerializeField]
-    private GameObject interactCollider;
 
     private Vector2 moveInput;
     private Rigidbody rb;
@@ -26,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-            rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
@@ -57,5 +54,10 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         canJump = true;
+    }
+
+    public void InteractPressed()
+    {
+        EventBus.Publish(new InteractEvent()
     }
 }

@@ -15,4 +15,27 @@ public static class EventBus
         }
         list.Add(handler);
     }
+    public static void Unsubscribe<T>(Action<T> handler) where T : IGameEvent
+    {
+        Type t = typeof(T);
+        if (!subs.TryGetValue(t, out List<Delegate> list))
+        {
+            list.Remove(handler);
+            if (list.Count == 0) subs.Remove(t);
+        }
+    }
+
+    public static void Publish<T>(T ev) where T : IGameEvent
+    {
+        Type t = typeof(T);
+        if (subs.TryGetValue(t, out List<Delegate> list))
+        {
+            Delegate[] copy = list.ToArray();
+            foreach (var d in copy)
+            {
+                ((Action<T>)d)(ev);
+            }
+        }
+    }
+
 }
