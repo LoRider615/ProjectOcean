@@ -1,18 +1,32 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Sharkey, Logan
+/// Handles Player movement
+/// Edited 6/14/2025
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
+
+    public bool drivingBoat = false;
+    public bool nearSteeringWheel = false;
+
     [SerializeField]
-    private int moveSpeed = 5;
+    private int moveSpeed = 5, jumpForce = 5;
+    [SerializeField]
+    private GameObject interactCollider;
 
     private Vector2 moveInput;
     private Rigidbody rb;
 
+    private bool canJump = true;
+
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
@@ -27,5 +41,21 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void Jump()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, 1f, ~10) && canJump)
+        {
+            canJump = false;
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            StartCoroutine(JumpCD());
+        }
+    }
+
+    public IEnumerator JumpCD()
+    {
+        yield return new WaitForSeconds(0.5f);
+        canJump = true;
     }
 }
