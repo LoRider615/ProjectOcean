@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,20 +11,15 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public bool drivingBoat = false; public bool nearSteeringWheel = false;
-    public Transform playerSteeringAnchorPost;
+    public Transform playerSteeringAnchorPost, TPCampos, FPCampos;
 
 
     [SerializeField]
     private int walkSpeed = 5, jumpForce = 5, sprintSpeed = 8;
     [SerializeField]
-    private GameObject playerCam, boat;
+    private GameObject playerCam, boatCam, boat;
     [SerializeField]
-    private Transform TPCampos, FPCampos;
-
-    [Header("Boat Params")]
-    [SerializeField]
-    private float acceleration, maxBoatSpeed, turnSpeed, drag;
-    private float boatSpeed;
+    private PlayerInput playerInput;
 
     private int moveSpeed;
 
@@ -31,42 +27,34 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
 
+    private BoatController boatController;
+
     private bool canJump = true;
+
+    private float steerInput = 0f;
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         moveSpeed = walkSpeed;
+        playerInput.SwitchCurrentActionMap("PlayerControls");
+        boatController = boat.GetComponent<BoatController>();
     }
 
     private void FixedUpdate()
     {
-        if (!drivingBoat)
-        {
-            Vector3 movement = transform.forward * moveInput.y + transform.right * moveInput.x;
-            movement.y = 0f;
-            movement.Normalize();
 
-            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        }
-        else
-        {
-            boatSpeed += moveInput.y * acceleration * Time.fixedDeltaTime;
-            boatSpeed = Mathf.Clamp(boatSpeed, -maxBoatSpeed, maxBoatSpeed);
-            boatSpeed = Mathf.MoveTowards(boatSpeed, 0, drag * Time.fixedDeltaTime);
+        Vector3 movement = transform.forward * moveInput.y + transform.right * moveInput.x;
+        movement.y = 0f;
+        movement.Normalize();
 
-            rb.MovePosition(rb.position + transform.forward * boatSpeed * Time.fixedDeltaTime);
-            float turnMultiplier = Mathf.Abs(boatSpeed) / maxBoatSpeed;
-            rb.MoveRotation(rb.rotation * Quaternion.Euler(0, moveInput.x * turnSpeed * turnMultiplier * Time.fixedDeltaTime, 0));
-        }
-
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-
         moveInput = context.ReadValue<Vector2>();
     }
 
@@ -127,20 +115,73 @@ public class PlayerController : MonoBehaviour
         {
             drivingBoat = true;
             transform.position = playerSteeringAnchorPost.position;
-            boat.transform.SetParent(transform);
-            playerCam.transform.position = TPCampos.position;
-            playerCam.transform.rotation = TPCampos.rotation;
-            rb.useGravity = false;
+            playerCam.SetActive(false);
+            playerInput.SwitchCurrentActionMap("BoatControls");
+            UIManager.instance.HideInteractText();
         }
-        else if (nearSteeringWheel && drivingBoat)
+    }
+
+    public void Dismount()
+    {
+        if (drivingBoat)
         {
+            playerInput.SwitchCurrentActionMap("PlayerControls");
             drivingBoat = false;
-            boat.transform.SetParent(null);
-            playerCam.transform.position = FPCampos.position;
-            playerCam.transform.rotation = FPCampos.rotation;
-            rb.useGravity = true;
+            
         }
     }
 
 
+    public void ShiftUp(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            int newSpeedLevel = boatController.speedLevel + 1;
+            Debug.Log("New Speed Level: " + newSpeedLevel);
+            switch (newSpeedLevel)
+            {
+                case 1:
+                    boatController.SetSpeedLevel(newSpeedLevel);
+                    break;
+                case 2:
+                    boatController.SetSpeedLevel(newSpeedLevel);
+                    break;
+                case 3:
+                    boatController.SetSpeedLevel(newSpeedLevel);
+                    break;
+                default:
+                    Debug.Log("Speed can't go any higher!");
+                    break;
+            }
+        } 
+    }
+
+    public void ShiftDown(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            int newSpeedLevel = boatController.speedLevel - 1;
+            Debug.Log("New Speed Level: " + newSpeedLevel);
+            switch (newSpeedLevel)
+            {
+                case 0:
+                    boatController.SetSpeedLevel(newSpeedLevel);
+                    break;
+                case 1:
+                    boatController.SetSpeedLevel(newSpeedLevel);
+                    break;
+                case 2:
+                    boatController.SetSpeedLevel(newSpeedLevel);
+                    break;
+                default:
+                    Debug.Log("Speed can't go any lower!");
+                    break;
+            }
+        }
+    }
+
+    public void Steer(InputAction.CallbackContext context)
+    {
+        boatController.steeringInput = context.ReadValue<float>();
+    }
 }

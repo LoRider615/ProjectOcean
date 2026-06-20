@@ -259,6 +259,136 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""BoatControls"",
+            ""id"": ""6126723e-ce63-4580-9791-4a509fa815f3"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""4249e611-ddbf-4604-9dc1-b55795ad4f28"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Accelerate"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4dfcd92-8845-4e6f-9da6-34c524dd7838"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Deccelerate"",
+                    ""type"": ""Button"",
+                    ""id"": ""5496e5e4-8d6f-49b5-8747-6a27e49ca3e7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BearLeft/Right"",
+                    ""type"": ""Value"",
+                    ""id"": ""9bb77a6b-2582-46c6-a1dd-eded8bf18a67"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""1c30808d-49dd-4334-8566-22399e169af8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""296eb53e-44e8-4308-ae0e-1693e63b230b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BearLeft/Right"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""a587fedc-b024-4aed-93a3-5114f67fd642"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BearLeft/Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""93d43bac-58f5-4b8c-afaa-3a2b4bc7d2af"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BearLeft/Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a80dec1c-033c-4e11-a201-c1efdea4c2ca"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96f603ee-04ab-42e9-8128-2e6a9f29426c"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Accelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42a5e54f-ca65-4f8f-9c1e-13ec665a13a1"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Deccelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83bcafe0-fd4e-4c63-ab40-315ead901c36"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -271,11 +401,19 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         m_PlayerControls_Interact = m_PlayerControls.FindAction("Interact", throwIfNotFound: true);
         m_PlayerControls_Crouch = m_PlayerControls.FindAction("Crouch", throwIfNotFound: true);
         m_PlayerControls_Sprint = m_PlayerControls.FindAction("Sprint", throwIfNotFound: true);
+        // BoatControls
+        m_BoatControls = asset.FindActionMap("BoatControls", throwIfNotFound: true);
+        m_BoatControls_Interact = m_BoatControls.FindAction("Interact", throwIfNotFound: true);
+        m_BoatControls_Accelerate = m_BoatControls.FindAction("Accelerate", throwIfNotFound: true);
+        m_BoatControls_Deccelerate = m_BoatControls.FindAction("Deccelerate", throwIfNotFound: true);
+        m_BoatControls_BearLeftRight = m_BoatControls.FindAction("BearLeft/Right", throwIfNotFound: true);
+        m_BoatControls_Mouse = m_BoatControls.FindAction("Mouse", throwIfNotFound: true);
     }
 
     ~@PlayerInputSystem()
     {
         UnityEngine.Debug.Assert(!m_PlayerControls.enabled, "This will cause a leak and performance issues, PlayerInputSystem.PlayerControls.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_BoatControls.enabled, "This will cause a leak and performance issues, PlayerInputSystem.BoatControls.Disable() has not been called.");
     }
 
     /// <summary>
@@ -498,6 +636,146 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerControlsActions" /> instance referencing this action map.
     /// </summary>
     public PlayerControlsActions @PlayerControls => new PlayerControlsActions(this);
+
+    // BoatControls
+    private readonly InputActionMap m_BoatControls;
+    private List<IBoatControlsActions> m_BoatControlsActionsCallbackInterfaces = new List<IBoatControlsActions>();
+    private readonly InputAction m_BoatControls_Interact;
+    private readonly InputAction m_BoatControls_Accelerate;
+    private readonly InputAction m_BoatControls_Deccelerate;
+    private readonly InputAction m_BoatControls_BearLeftRight;
+    private readonly InputAction m_BoatControls_Mouse;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "BoatControls".
+    /// </summary>
+    public struct BoatControlsActions
+    {
+        private @PlayerInputSystem m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public BoatControlsActions(@PlayerInputSystem wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "BoatControls/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_BoatControls_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "BoatControls/Accelerate".
+        /// </summary>
+        public InputAction @Accelerate => m_Wrapper.m_BoatControls_Accelerate;
+        /// <summary>
+        /// Provides access to the underlying input action "BoatControls/Deccelerate".
+        /// </summary>
+        public InputAction @Deccelerate => m_Wrapper.m_BoatControls_Deccelerate;
+        /// <summary>
+        /// Provides access to the underlying input action "BoatControls/BearLeftRight".
+        /// </summary>
+        public InputAction @BearLeftRight => m_Wrapper.m_BoatControls_BearLeftRight;
+        /// <summary>
+        /// Provides access to the underlying input action "BoatControls/Mouse".
+        /// </summary>
+        public InputAction @Mouse => m_Wrapper.m_BoatControls_Mouse;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_BoatControls; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="BoatControlsActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(BoatControlsActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="BoatControlsActions" />
+        public void AddCallbacks(IBoatControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_BoatControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BoatControlsActionsCallbackInterfaces.Add(instance);
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @Accelerate.started += instance.OnAccelerate;
+            @Accelerate.performed += instance.OnAccelerate;
+            @Accelerate.canceled += instance.OnAccelerate;
+            @Deccelerate.started += instance.OnDeccelerate;
+            @Deccelerate.performed += instance.OnDeccelerate;
+            @Deccelerate.canceled += instance.OnDeccelerate;
+            @BearLeftRight.started += instance.OnBearLeftRight;
+            @BearLeftRight.performed += instance.OnBearLeftRight;
+            @BearLeftRight.canceled += instance.OnBearLeftRight;
+            @Mouse.started += instance.OnMouse;
+            @Mouse.performed += instance.OnMouse;
+            @Mouse.canceled += instance.OnMouse;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="BoatControlsActions" />
+        private void UnregisterCallbacks(IBoatControlsActions instance)
+        {
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @Accelerate.started -= instance.OnAccelerate;
+            @Accelerate.performed -= instance.OnAccelerate;
+            @Accelerate.canceled -= instance.OnAccelerate;
+            @Deccelerate.started -= instance.OnDeccelerate;
+            @Deccelerate.performed -= instance.OnDeccelerate;
+            @Deccelerate.canceled -= instance.OnDeccelerate;
+            @BearLeftRight.started -= instance.OnBearLeftRight;
+            @BearLeftRight.performed -= instance.OnBearLeftRight;
+            @BearLeftRight.canceled -= instance.OnBearLeftRight;
+            @Mouse.started -= instance.OnMouse;
+            @Mouse.performed -= instance.OnMouse;
+            @Mouse.canceled -= instance.OnMouse;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="BoatControlsActions.UnregisterCallbacks(IBoatControlsActions)" />.
+        /// </summary>
+        /// <seealso cref="BoatControlsActions.UnregisterCallbacks(IBoatControlsActions)" />
+        public void RemoveCallbacks(IBoatControlsActions instance)
+        {
+            if (m_Wrapper.m_BoatControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="BoatControlsActions.AddCallbacks(IBoatControlsActions)" />
+        /// <seealso cref="BoatControlsActions.RemoveCallbacks(IBoatControlsActions)" />
+        /// <seealso cref="BoatControlsActions.UnregisterCallbacks(IBoatControlsActions)" />
+        public void SetCallbacks(IBoatControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BoatControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BoatControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="BoatControlsActions" /> instance referencing this action map.
+    /// </summary>
+    public BoatControlsActions @BoatControls => new BoatControlsActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerControls" which allows adding and removing callbacks.
     /// </summary>
@@ -547,5 +825,48 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSprint(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "BoatControls" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="BoatControlsActions.AddCallbacks(IBoatControlsActions)" />
+    /// <seealso cref="BoatControlsActions.RemoveCallbacks(IBoatControlsActions)" />
+    public interface IBoatControlsActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Accelerate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAccelerate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Deccelerate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDeccelerate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "BearLeft/Right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBearLeftRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Mouse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMouse(InputAction.CallbackContext context);
     }
 }
