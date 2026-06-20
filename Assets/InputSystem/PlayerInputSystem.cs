@@ -308,6 +308,15 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""c4cc7112-c851-4852-a52d-8c5cf41ec578"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -387,6 +396,17 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5e4b997-3cdc-4d68-ae96-d8f32a4d45b1"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -408,6 +428,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         m_BoatControls_Deccelerate = m_BoatControls.FindAction("Deccelerate", throwIfNotFound: true);
         m_BoatControls_BearLeftRight = m_BoatControls.FindAction("BearLeft/Right", throwIfNotFound: true);
         m_BoatControls_Mouse = m_BoatControls.FindAction("Mouse", throwIfNotFound: true);
+        m_BoatControls_Scroll = m_BoatControls.FindAction("Scroll", throwIfNotFound: true);
     }
 
     ~@PlayerInputSystem()
@@ -645,6 +666,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_BoatControls_Deccelerate;
     private readonly InputAction m_BoatControls_BearLeftRight;
     private readonly InputAction m_BoatControls_Mouse;
+    private readonly InputAction m_BoatControls_Scroll;
     /// <summary>
     /// Provides access to input actions defined in input action map "BoatControls".
     /// </summary>
@@ -676,6 +698,10 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "BoatControls/Mouse".
         /// </summary>
         public InputAction @Mouse => m_Wrapper.m_BoatControls_Mouse;
+        /// <summary>
+        /// Provides access to the underlying input action "BoatControls/Scroll".
+        /// </summary>
+        public InputAction @Scroll => m_Wrapper.m_BoatControls_Scroll;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -717,6 +743,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Mouse.started += instance.OnMouse;
             @Mouse.performed += instance.OnMouse;
             @Mouse.canceled += instance.OnMouse;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
         }
 
         /// <summary>
@@ -743,6 +772,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Mouse.started -= instance.OnMouse;
             @Mouse.performed -= instance.OnMouse;
             @Mouse.canceled -= instance.OnMouse;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
         }
 
         /// <summary>
@@ -868,5 +900,12 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMouse(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Scroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScroll(InputAction.CallbackContext context);
     }
 }

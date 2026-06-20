@@ -56,6 +56,7 @@ public class BoatController : MonoBehaviour
     public void SetSpeedLevel(int level)
     {
         speedLevel = level;
+        UIManager.instance.ShowBoatSpeedometer(level);
     }
 
     private void OnTriggerEnter(Collider other)

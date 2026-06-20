@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public bool drivingBoat = false; public bool nearSteeringWheel = false;
-    public Transform playerSteeringAnchorPost, TPCampos, FPCampos;
+    public Transform playerSteeringAnchorPost;
 
 
     [SerializeField]
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         moveSpeed = walkSpeed;
         playerInput.SwitchCurrentActionMap("PlayerControls");
         boatController = boat.GetComponent<BoatController>();
+        boatCam.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -116,8 +117,11 @@ public class PlayerController : MonoBehaviour
             drivingBoat = true;
             transform.position = playerSteeringAnchorPost.position;
             playerCam.SetActive(false);
+            boatCam.SetActive(true);
+            //boatCam.transform.position = new Vector3(1950f, 1100f, 0f);
             playerInput.SwitchCurrentActionMap("BoatControls");
             UIManager.instance.HideInteractText();
+            UIManager.instance.ShowBoatSpeedometer(boatController.speedLevel);
         }
     }
 
@@ -127,7 +131,9 @@ public class PlayerController : MonoBehaviour
         {
             playerInput.SwitchCurrentActionMap("PlayerControls");
             drivingBoat = false;
-            
+            boatCam.SetActive(false);
+            playerCam.SetActive(true);
+            UIManager.instance.HideBoatSpeedometer();
         }
     }
 
@@ -184,4 +190,6 @@ public class PlayerController : MonoBehaviour
     {
         boatController.steeringInput = context.ReadValue<float>();
     }
+
+    
 }

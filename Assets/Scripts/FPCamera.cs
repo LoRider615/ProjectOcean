@@ -48,8 +48,5 @@ public class FPCamera : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        transform.position = playerController.FPCampos.position;
-        transform.rotation = playerController.FPCampos.rotation;
-
     }
 }
