@@ -330,7 +330,7 @@ MonoBehaviour:
   currentSpeed: 0
   targetSpeed: 0
   acceleration: 1.7
-  decceleration: 0.5
+  decceleration: 0.9
   turnSpeed: 4
   steeringInput: 0
   SpeedTargets:
@@ -562,6 +562,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   interactText: {fileID: 892504537}
+  speed0: {fileID: 931676584}
+  speed1: {fileID: 745364709}
+  speed2: {fileID: 2019996258}
+  speed3: {fileID: 1420160614}
 --- !u!1 &892504537
 GameObject:
   m_ObjectHideFlags: 0
