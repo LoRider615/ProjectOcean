@@ -133,8 +133,11 @@ MonoBehaviour:
   drivingBoat: 0
   nearSteeringWheel: 0
   playerSteeringAnchorPost: {fileID: 0}
+  respawnLoc: {fileID: 0}
+  maxHealth: 3
+  currentHealth: 3
   walkSpeed: 5
-  jumpForce: 10
+  jumpForce: 20
   sprintSpeed: 8
   playerCam: {fileID: 5772102524808282461}
   boatCam: {fileID: 0}
@@ -148,7 +151,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30439490385724391}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -384,6 +387,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c4cc7112-c851-4852-a52d-8c5cf41ec578
     m_ActionName: 'BoatControls/Scroll[/Mouse/scroll]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3921978784895486082}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dcf47817-6fdf-4899-b270-9d5ff4ce3072
+    m_ActionName: 'PlayerControls/Respawn[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls

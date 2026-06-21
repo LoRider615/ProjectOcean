@@ -22,6 +22,7 @@ public class BoatController : MonoBehaviour
     public float decceleration = 0.9f;
     public float turnSpeed = 2f;
     public float steeringInput;
+    public Transform boatRespawnLoc;
 
 
     public float[] SpeedTargets =
@@ -56,7 +57,8 @@ public class BoatController : MonoBehaviour
     public void SetSpeedLevel(int level)
     {
         speedLevel = level;
-        UIManager.instance.ShowBoatSpeedometer(level);
+        if (playerController.drivingBoat)
+            UIManager.instance.ShowBoatSpeedometer(level);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,5 +80,19 @@ public class BoatController : MonoBehaviour
         {
             other.transform.parent = null;
         }
+    }
+
+    public void SetRespawn(Transform newLoc)
+    {
+        boatRespawnLoc = newLoc;
+    }
+
+    public void Respawn()
+    {
+        transform.position = boatRespawnLoc.position;
+        transform.rotation = boatRespawnLoc.rotation;
+        SetSpeedLevel(0);
+        rb.linearVelocity = Vector3.zero;
+        currentSpeed = 0;
     }
 }

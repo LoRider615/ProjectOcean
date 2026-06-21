@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 {
     public bool drivingBoat = false; public bool nearSteeringWheel = false;
     public Transform playerSteeringAnchorPost;
+    public Transform respawnLoc;
+    public int maxHealth = 3, currentHealth = 3;
 
 
     [SerializeField]
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     private float steerInput = 0f;
 
+    private Checkpoint lastCheckpoint;
+
 
     private void Awake()
     {
@@ -41,6 +45,7 @@ public class PlayerController : MonoBehaviour
         playerInput.SwitchCurrentActionMap("PlayerControls");
         boatController = boat.GetComponent<BoatController>();
         boatCam.SetActive(false);
+        currentHealth = maxHealth;
     }
 
     private void FixedUpdate()
@@ -191,5 +196,41 @@ public class PlayerController : MonoBehaviour
         boatController.steeringInput = context.ReadValue<float>();
     }
 
-    
+    public void Respawn()
+    {
+        if (respawnLoc != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            transform.position = respawnLoc.position;
+            transform.rotation = respawnLoc.rotation;
+            boatController.Respawn();
+        }
+        else
+        {
+            Debug.LogWarning("No respawn location found!");
+        }
+    }
+
+    public void SetRespawn(Checkpoint newBuoy)
+    {
+        if (lastCheckpoint == null)
+        {
+            lastCheckpoint = newBuoy;
+            respawnLoc = lastCheckpoint.respawnPoint;
+        }
+        else
+        {
+            if (lastCheckpoint.name != newBuoy.name)
+            {
+                lastCheckpoint.TurnOffLight();
+                lastCheckpoint = newBuoy;
+                respawnLoc = lastCheckpoint.respawnPoint;
+            }
+        }
+        
+        
+    }
+
+
+
 }

@@ -475,6 +475,10 @@ MonoBehaviour:
   speed1: {fileID: 1128008621417789521}
   speed2: {fileID: 4449381755886977118}
   speed3: {fileID: 3775738187469904994}
+  speed0Text: {fileID: 1274006010754087013}
+  speed1Text: {fileID: 900473437372302051}
+  speed2Text: {fileID: 4940788395976825109}
+  speed3Text: {fileID: 7312232650994733085}
 --- !u!1 &3775738187469904994
 GameObject:
   m_ObjectHideFlags: 0

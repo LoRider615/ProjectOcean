@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject interactText, speed0, speed1, speed2, speed3;
+    [SerializeField]
+    private GameObject speed0Text, speed1Text, speed2Text, speed3Text;
 
 
     private void Awake()
@@ -19,6 +21,7 @@ public class UIManager : MonoBehaviour
         instance = this;
         interactText.SetActive(false);
         HideBoatSpeedometer();
+        
     }
 
     public void ShowInteractText()
@@ -35,6 +38,7 @@ public class UIManager : MonoBehaviour
     public void ShowBoatSpeedometer(int currentSpeedLevel)
     {
         speed0.SetActive(true);
+        SetSpeedNum(currentSpeedLevel);
         switch (currentSpeedLevel)
         {
             case 0:
@@ -66,6 +70,37 @@ public class UIManager : MonoBehaviour
         speed1 .SetActive(false);
         speed2 .SetActive(false);
         speed3 .SetActive(false);
+    }
+
+    public void SetSpeedNum(int speedNum)
+    {
+        switch (speedNum)
+        {
+            case 0:
+                speed0Text.SetActive(true);
+                speed1Text.SetActive(false);
+                speed2Text.SetActive(false);
+                speed3Text.SetActive(false);
+                break;
+            case 1:
+                speed0Text.SetActive(false);
+                speed1Text.SetActive(true);
+                speed2Text.SetActive(false);
+                speed3Text.SetActive(false);
+                break;
+            case 2:
+                speed0Text.SetActive(false);
+                speed1Text.SetActive(false);
+                speed2Text.SetActive(true);
+                speed3Text.SetActive(false);
+                break;
+            case 3:
+                speed0Text.SetActive(false);
+                speed1Text.SetActive(false);
+                speed2Text.SetActive(false);
+                speed3Text.SetActive(true);
+                break;
+        }
     }
 
 
