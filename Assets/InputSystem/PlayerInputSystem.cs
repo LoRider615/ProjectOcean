@@ -337,6 +337,15 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ToggleLight"",
+                    ""type"": ""Button"",
+                    ""id"": ""6fe0f2a5-8ba5-42c9-9f6e-b23430476ba9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -427,6 +436,17 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2db3852e-95e5-4bc3-84f4-3bdde5f335d2"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -450,6 +470,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         m_BoatControls_BearLeftRight = m_BoatControls.FindAction("BearLeft/Right", throwIfNotFound: true);
         m_BoatControls_Mouse = m_BoatControls.FindAction("Mouse", throwIfNotFound: true);
         m_BoatControls_Scroll = m_BoatControls.FindAction("Scroll", throwIfNotFound: true);
+        m_BoatControls_ToggleLight = m_BoatControls.FindAction("ToggleLight", throwIfNotFound: true);
     }
 
     ~@PlayerInputSystem()
@@ -699,6 +720,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_BoatControls_BearLeftRight;
     private readonly InputAction m_BoatControls_Mouse;
     private readonly InputAction m_BoatControls_Scroll;
+    private readonly InputAction m_BoatControls_ToggleLight;
     /// <summary>
     /// Provides access to input actions defined in input action map "BoatControls".
     /// </summary>
@@ -734,6 +756,10 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "BoatControls/Scroll".
         /// </summary>
         public InputAction @Scroll => m_Wrapper.m_BoatControls_Scroll;
+        /// <summary>
+        /// Provides access to the underlying input action "BoatControls/ToggleLight".
+        /// </summary>
+        public InputAction @ToggleLight => m_Wrapper.m_BoatControls_ToggleLight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -778,6 +804,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
+            @ToggleLight.started += instance.OnToggleLight;
+            @ToggleLight.performed += instance.OnToggleLight;
+            @ToggleLight.canceled += instance.OnToggleLight;
         }
 
         /// <summary>
@@ -807,6 +836,9 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
+            @ToggleLight.started -= instance.OnToggleLight;
+            @ToggleLight.performed -= instance.OnToggleLight;
+            @ToggleLight.canceled -= instance.OnToggleLight;
         }
 
         /// <summary>
@@ -946,5 +978,12 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScroll(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ToggleLight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnToggleLight(InputAction.CallbackContext context);
     }
 }

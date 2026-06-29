@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowInteractText()
     {
-        Debug.Log("Show text fired");
+        //Debug.Log("Show text fired");
         interactText.SetActive(true);
     }
 

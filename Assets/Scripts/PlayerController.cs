@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             int newSpeedLevel = boatController.speedLevel + 1;
-            Debug.Log("New Speed Level: " + newSpeedLevel);
+            //Debug.Log("New Speed Level: " + newSpeedLevel);
             switch (newSpeedLevel)
             {
                 case 1:
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             int newSpeedLevel = boatController.speedLevel - 1;
-            Debug.Log("New Speed Level: " + newSpeedLevel);
+            //Debug.Log("New Speed Level: " + newSpeedLevel);
             switch (newSpeedLevel)
             {
                 case 0:

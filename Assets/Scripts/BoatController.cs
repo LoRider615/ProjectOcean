@@ -14,6 +14,7 @@ public class BoatController : MonoBehaviour
     [SerializeField]
     private Collider boatFloor;
 
+
     public int speedLevel = 0;
 
     public float currentSpeed;
