@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private int walkSpeed = 5, jumpForce = 5, sprintSpeed = 8;
+    //[SerializeField]
+    //private float
     [SerializeField]
     private GameObject playerCam, boatCam, boat;
     [SerializeField]
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private BoatController boatController;
 
-    private bool canJump = true;
+    private bool canJump = true, netEquipped = false;
 
     private float steerInput = 0f;
 
@@ -230,6 +232,10 @@ public class PlayerController : MonoBehaviour
         
         
     }
+
+    
+
+
 
 
 

@@ -812,6 +812,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6539727175737712234, guid: 09a328b3bb273044db594d68400fd194, type: 3}
   m_PrefabInstance: {fileID: 2245142097862058592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1602983988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1271521022927086299, guid: 55f118c187065304e885f005217e78e0, type: 3}
+  m_PrefabInstance: {fileID: 5538706845644498906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!4 &1756709527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9126586919346722697, guid: 09a328b3bb273044db594d68400fd194, type: 3}
@@ -1651,10 +1662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 30439490385724391, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 1805134552102513124, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
+      propertyPath: water
+      value: 
+      objectReference: {fileID: 6263317403452547794}
     - target: {fileID: 3921978784895486082, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
       propertyPath: boat
       value: 
@@ -1667,74 +1678,18 @@ PrefabInstance:
       propertyPath: playerSteeringAnchorPost
       value: 
       objectReference: {fileID: 7080995924309085213}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
-      value: 6fe0f2a5-8ba5-42c9-9f6e-b23430476ba9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
-      value: 'BoatControls/ToggleLight[/Keyboard/f]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 5020823763946730160, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
+      propertyPath: netChargeBar
+      value: 
+      objectReference: {fileID: 1602983988}
     - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 732440939}
     - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 732440939}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MouseLook
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleLight
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Spotlight, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Spotlight, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Spotlight, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302985192089646486, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8585516251757701232, guid: 8b9c3f02e21cfd94491e7745825ba53d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -29.17
@@ -1791,54 +1746,6 @@ PrefabInstance:
     - target: {fileID: 2355621077867552544, guid: 55f118c187065304e885f005217e78e0, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3354984312644131747, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3354984312644131747, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3354984312644131747, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3354984312644131747, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190080
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490476295717883742, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490476295717883742, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490476295717883742, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490476295717883742, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190080
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057049376412304725, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057049376412304725, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057049376412304725, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057049376412304725, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 7226543033274972477, guid: 55f118c187065304e885f005217e78e0, type: 3}
       propertyPath: m_Pivot.x
@@ -1920,21 +1827,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8484111737512242820, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.b
+    - target: {fileID: 9215981764005416366, guid: 55f118c187065304e885f005217e78e0, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8484111737512242820, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8484111737512242820, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8484111737512242820, guid: 55f118c187065304e885f005217e78e0, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

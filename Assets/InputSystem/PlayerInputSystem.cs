@@ -154,6 +154,24 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EquipNet"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b2a527f-6735-4270-b604-7aba93450ba3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Charge/ReleaseNet"",
+                    ""type"": ""Button"",
+                    ""id"": ""6fbfef9c-852f-423d-8816-ee395a0fbd76"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -275,6 +293,28 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64b8f600-f3fc-4d55-916c-7458dec0d345"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EquipNet"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a72b2506-2373-46c5-a4ca-ed8ff6c1a62c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Charge/ReleaseNet"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -462,6 +502,8 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         m_PlayerControls_Crouch = m_PlayerControls.FindAction("Crouch", throwIfNotFound: true);
         m_PlayerControls_Sprint = m_PlayerControls.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerControls_Respawn = m_PlayerControls.FindAction("Respawn", throwIfNotFound: true);
+        m_PlayerControls_EquipNet = m_PlayerControls.FindAction("EquipNet", throwIfNotFound: true);
+        m_PlayerControls_ChargeReleaseNet = m_PlayerControls.FindAction("Charge/ReleaseNet", throwIfNotFound: true);
         // BoatControls
         m_BoatControls = asset.FindActionMap("BoatControls", throwIfNotFound: true);
         m_BoatControls_Interact = m_BoatControls.FindAction("Interact", throwIfNotFound: true);
@@ -559,6 +601,8 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Crouch;
     private readonly InputAction m_PlayerControls_Sprint;
     private readonly InputAction m_PlayerControls_Respawn;
+    private readonly InputAction m_PlayerControls_EquipNet;
+    private readonly InputAction m_PlayerControls_ChargeReleaseNet;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerControls".
     /// </summary>
@@ -598,6 +642,14 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerControls/Respawn".
         /// </summary>
         public InputAction @Respawn => m_Wrapper.m_PlayerControls_Respawn;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerControls/EquipNet".
+        /// </summary>
+        public InputAction @EquipNet => m_Wrapper.m_PlayerControls_EquipNet;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerControls/ChargeReleaseNet".
+        /// </summary>
+        public InputAction @ChargeReleaseNet => m_Wrapper.m_PlayerControls_ChargeReleaseNet;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -645,6 +697,12 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Respawn.started += instance.OnRespawn;
             @Respawn.performed += instance.OnRespawn;
             @Respawn.canceled += instance.OnRespawn;
+            @EquipNet.started += instance.OnEquipNet;
+            @EquipNet.performed += instance.OnEquipNet;
+            @EquipNet.canceled += instance.OnEquipNet;
+            @ChargeReleaseNet.started += instance.OnChargeReleaseNet;
+            @ChargeReleaseNet.performed += instance.OnChargeReleaseNet;
+            @ChargeReleaseNet.canceled += instance.OnChargeReleaseNet;
         }
 
         /// <summary>
@@ -677,6 +735,12 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Respawn.started -= instance.OnRespawn;
             @Respawn.performed -= instance.OnRespawn;
             @Respawn.canceled -= instance.OnRespawn;
+            @EquipNet.started -= instance.OnEquipNet;
+            @EquipNet.performed -= instance.OnEquipNet;
+            @EquipNet.canceled -= instance.OnEquipNet;
+            @ChargeReleaseNet.started -= instance.OnChargeReleaseNet;
+            @ChargeReleaseNet.performed -= instance.OnChargeReleaseNet;
+            @ChargeReleaseNet.canceled -= instance.OnChargeReleaseNet;
         }
 
         /// <summary>
@@ -928,6 +992,20 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRespawn(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "EquipNet" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEquipNet(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Charge/ReleaseNet" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChargeReleaseNet(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "BoatControls" which allows adding and removing callbacks.
